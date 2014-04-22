@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BurgerProtocal.h"
 
 @interface SearchViewController : UIViewController
+
+@property (nonatomic, unsafe_unretained) id <BurgerProtocal> burgerDelegate;
 
 @end

@@ -10,29 +10,60 @@
 
 @interface ReposViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @end
 
 @implementation ReposViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _titleLabel.text = self.title;
+    
+    [self configureView];
+
     // Do any additional setup after loading the view.
 }
+
+
+
+
+- (void)configureView
+{
+    // Update the user interface for the detail item.
+    
+    if (self.detailRepo) {
+        
+        NSData *webViewData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[self.detailRepo valueForKey:@"html_url"]]];
+        
+        [_webView loadData:webViewData
+                  MIMEType:nil
+          textEncodingName:nil
+                   baseURL:nil];
+                
+    }
+}
+
+
+
+
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)burgerPressed:(id)sender
+{
+    [_burgerDelegate handleBurgerPressed];
 }
 
 /*

@@ -10,22 +10,22 @@
 
 @interface UsersViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 @end
 
 @implementation UsersViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (IBAction)burgerPressed:(id)sender
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [_burgerDelegate handleBurgerPressed];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _titleLabel.text = self.title;
+
     // Do any additional setup after loading the view.
 }
 

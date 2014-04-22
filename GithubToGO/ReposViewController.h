@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BurgerProtocal.h"
+#import "MVRepo.h"
 
 @interface ReposViewController : UIViewController
+
+@property (nonatomic, unsafe_unretained) id <BurgerProtocal> burgerDelegate;
+
+@property (nonatomic, strong) MVRepo *detailRepo;
 
 @end

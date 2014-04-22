@@ -10,4 +10,6 @@
 
 @protocol BurgerProtocal <NSObject>
 
+-(void)handleBurgerPressed;
+
 @end

@@ -7,25 +7,53 @@
 //
 
 #import "SearchViewController.h"
+#import "MVAppDelegate.h"
+#import "ReposViewController.h"
 
-@interface SearchViewController ()
+#import "MVRepo.h"
+
+@interface SearchViewController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel        *titleLabel;
+
+@property (weak, nonatomic) IBOutlet UISearchBar    *searchBar;
+@property (weak, nonatomic) IBOutlet UITableView    *tableView;
+@property (weak, nonatomic) MVAppDelegate           *appDelegate;
+
+@property (weak, nonatomic) MVNetworkController     *networkController;
+
+@property (nonatomic,strong) NSMutableArray         *repos;
 
 @end
 
 @implementation SearchViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+- (IBAction)burgerPressed:(id)sender {
+    [_burgerDelegate handleBurgerPressed];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    _appDelegate = [UIApplication sharedApplication].delegate;
+    
+    _appDelegate.networkController = [MVNetworkController new];
+    
+    _networkController = _appDelegate.networkController;
+    
+    
+    _searchBar.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    
+    _titleLabel.text = self.title;
+    
+//    [_networkController requestOAuthAccess];
+    
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -34,6 +62,65 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self searchGithubfor:searchBar.text];
+    [searchBar resignFirstResponder];
+
+}
+
+
+-(void)searchGithubfor:(NSString *)search
+{
+    
+   _repos = [[_networkController downloadReposForUser:search] mutableCopy];
+    
+    [_tableView reloadData];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    for (UISearchBar *search in self.view.subviews) {
+        if (_searchBar == search && [_searchBar isFirstResponder]) {
+            [self searchBarSearchButtonClicked:search];
+        }
+    }
+}
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _repos.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchCell" forIndexPath:indexPath];
+    
+    MVRepo *thisRepo = [[MVRepo alloc]initRepoWith:_repos[indexPath.row]];
+    
+    
+    
+    cell.textLabel.text = thisRepo.name;
+    
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ReposViewController *thisRepo = [ReposViewController new];
+    
+    thisRepo.detailRepo = [[MVRepo alloc]initRepoWith:_repos[indexPath.row]];
+    
+    thisRepo.view.backgroundColor = [UIColor whiteColor];
+    [self presentViewController:thisRepo animated:YES completion:nil];
+
+    
+}
+
 
 /*
 #pragma mark - Navigation

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C94198C719057F290088DB95 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94198C619057F290088DB95 /* SearchViewController.m */; };
+		C9D57ED21907067700004ABB /* MVRepo.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D57ED11907067700004ABB /* MVRepo.m */; };
 		C9F7E6B119057D2B005AADCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F7E6B019057D2B005AADCB /* Foundation.framework */; };
 		C9F7E6B319057D2B005AADCB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F7E6B219057D2B005AADCB /* CoreGraphics.framework */; };
 		C9F7E6B519057D2B005AADCB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F7E6B419057D2B005AADCB /* UIKit.framework */; };
@@ -14,13 +16,16 @@
 		C9F7E6BD19057D2B005AADCB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F7E6BC19057D2B005AADCB /* main.m */; };
 		C9F7E6C119057D2B005AADCB /* MVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F7E6C019057D2B005AADCB /* MVAppDelegate.m */; };
 		C9F7E6C419057D2B005AADCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F7E6C219057D2B005AADCB /* Main.storyboard */; };
-		C9F7E6C719057D2B005AADCB /* MVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F7E6C619057D2B005AADCB /* MVViewController.m */; };
 		C9F7E6C919057D2B005AADCB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F7E6C819057D2B005AADCB /* Images.xcassets */; };
 		C9F7E6D019057D2B005AADCB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F7E6CF19057D2B005AADCB /* XCTest.framework */; };
 		C9F7E6D119057D2B005AADCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F7E6B019057D2B005AADCB /* Foundation.framework */; };
 		C9F7E6D219057D2B005AADCB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F7E6B419057D2B005AADCB /* UIKit.framework */; };
 		C9F7E6DA19057D2B005AADCB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9F7E6D819057D2B005AADCB /* InfoPlist.strings */; };
 		C9F7E6DC19057D2B005AADCB /* GithubToGOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F7E6DB19057D2B005AADCB /* GithubToGOTests.m */; };
+		C9F7E6E719057DB2005AADCB /* RootMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F7E6E619057DB2005AADCB /* RootMenuController.m */; };
+		C9F7E6EA19057E92005AADCB /* ReposViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F7E6E919057E92005AADCB /* ReposViewController.m */; };
+		C9F7E6ED19057ED1005AADCB /* UsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F7E6EC19057ED1005AADCB /* UsersViewController.m */; };
+		C9F810DA1906DFDF00A6A2ED /* MVNetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F810D91906DFDF00A6A2ED /* MVNetworkController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +39,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C94198C519057F290088DB95 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		C94198C619057F290088DB95 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		C97614691905944C001A67ED /* BurgerProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BurgerProtocal.h; sourceTree = "<group>"; };
+		C9D57ECD1906F9F900004ABB /* GithubToGO.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GithubToGO.entitlements; sourceTree = "<group>"; };
+		C9D57ED01907067700004ABB /* MVRepo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVRepo.h; sourceTree = "<group>"; };
+		C9D57ED11907067700004ABB /* MVRepo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVRepo.m; sourceTree = "<group>"; };
 		C9F7E6AD19057D2B005AADCB /* GithubToGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubToGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F7E6B019057D2B005AADCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C9F7E6B219057D2B005AADCB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -45,14 +56,20 @@
 		C9F7E6BF19057D2B005AADCB /* MVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVAppDelegate.h; sourceTree = "<group>"; };
 		C9F7E6C019057D2B005AADCB /* MVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVAppDelegate.m; sourceTree = "<group>"; };
 		C9F7E6C319057D2B005AADCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C9F7E6C519057D2B005AADCB /* MVViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVViewController.h; sourceTree = "<group>"; };
-		C9F7E6C619057D2B005AADCB /* MVViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVViewController.m; sourceTree = "<group>"; };
 		C9F7E6C819057D2B005AADCB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C9F7E6CE19057D2B005AADCB /* GithubToGOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GithubToGOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F7E6CF19057D2B005AADCB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C9F7E6D719057D2B005AADCB /* GithubToGOTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GithubToGOTests-Info.plist"; sourceTree = "<group>"; };
 		C9F7E6D919057D2B005AADCB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C9F7E6DB19057D2B005AADCB /* GithubToGOTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GithubToGOTests.m; sourceTree = "<group>"; };
+		C9F7E6E519057DB2005AADCB /* RootMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootMenuController.h; sourceTree = "<group>"; };
+		C9F7E6E619057DB2005AADCB /* RootMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootMenuController.m; sourceTree = "<group>"; };
+		C9F7E6E819057E92005AADCB /* ReposViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReposViewController.h; sourceTree = "<group>"; };
+		C9F7E6E919057E92005AADCB /* ReposViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReposViewController.m; sourceTree = "<group>"; };
+		C9F7E6EB19057ED1005AADCB /* UsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersViewController.h; sourceTree = "<group>"; };
+		C9F7E6EC19057ED1005AADCB /* UsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersViewController.m; sourceTree = "<group>"; };
+		C9F810D81906DFDF00A6A2ED /* MVNetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVNetworkController.h; sourceTree = "<group>"; };
+		C9F810D91906DFDF00A6A2ED /* MVNetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVNetworkController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +96,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C976146A19059842001A67ED /* Child View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C9F7E6E819057E92005AADCB /* ReposViewController.h */,
+				C9F7E6E919057E92005AADCB /* ReposViewController.m */,
+				C9F7E6EB19057ED1005AADCB /* UsersViewController.h */,
+				C9F7E6EC19057ED1005AADCB /* UsersViewController.m */,
+				C94198C519057F290088DB95 /* SearchViewController.h */,
+				C94198C619057F290088DB95 /* SearchViewController.m */,
+			);
+			name = "Child View Controllers";
+			sourceTree = "<group>";
+		};
+		C9D57ED3190706D700004ABB /* Other Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				C97614691905944C001A67ED /* BurgerProtocal.h */,
+				C9D57ED01907067700004ABB /* MVRepo.h */,
+				C9D57ED11907067700004ABB /* MVRepo.m */,
+			);
+			name = "Other Stuff";
+			sourceTree = "<group>";
+		};
 		C9F7E6A419057D2B005AADCB = {
 			isa = PBXGroup;
 			children = (
@@ -112,11 +152,16 @@
 		C9F7E6B619057D2B005AADCB /* GithubToGO */ = {
 			isa = PBXGroup;
 			children = (
+				C9D57ECD1906F9F900004ABB /* GithubToGO.entitlements */,
 				C9F7E6BF19057D2B005AADCB /* MVAppDelegate.h */,
 				C9F7E6C019057D2B005AADCB /* MVAppDelegate.m */,
+				C9F810D81906DFDF00A6A2ED /* MVNetworkController.h */,
+				C9F810D91906DFDF00A6A2ED /* MVNetworkController.m */,
 				C9F7E6C219057D2B005AADCB /* Main.storyboard */,
-				C9F7E6C519057D2B005AADCB /* MVViewController.h */,
-				C9F7E6C619057D2B005AADCB /* MVViewController.m */,
+				C9F7E6E519057DB2005AADCB /* RootMenuController.h */,
+				C9F7E6E619057DB2005AADCB /* RootMenuController.m */,
+				C9D57ED3190706D700004ABB /* Other Stuff */,
+				C976146A19059842001A67ED /* Child View Controllers */,
 				C9F7E6C819057D2B005AADCB /* Images.xcassets */,
 				C9F7E6B719057D2B005AADCB /* Supporting Files */,
 			);
@@ -200,6 +245,14 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Matthew Voss";
 				TargetAttributes = {
+					C9F7E6AC19057D2B005AADCB = {
+						DevelopmentTeam = N2WNSNJ5RF;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+						};
+					};
 					C9F7E6CD19057D2B005AADCB = {
 						TestTargetID = C9F7E6AC19057D2B005AADCB;
 					};
@@ -250,9 +303,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9F810DA1906DFDF00A6A2ED /* MVNetworkController.m in Sources */,
+				C9F7E6E719057DB2005AADCB /* RootMenuController.m in Sources */,
+				C9F7E6EA19057E92005AADCB /* ReposViewController.m in Sources */,
 				C9F7E6BD19057D2B005AADCB /* main.m in Sources */,
-				C9F7E6C719057D2B005AADCB /* MVViewController.m in Sources */,
+				C9D57ED21907067700004ABB /* MVRepo.m in Sources */,
+				C9F7E6ED19057ED1005AADCB /* UsersViewController.m in Sources */,
 				C9F7E6C119057D2B005AADCB /* MVAppDelegate.m in Sources */,
+				C94198C719057F290088DB95 /* SearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,10 +435,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GithubToGO/GithubToGO-Prefix.pch";
 				INFOPLIST_FILE = "GithubToGO/GithubToGO-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -390,10 +451,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GithubToGO/GithubToGO-Prefix.pch";
 				INFOPLIST_FILE = "GithubToGO/GithubToGO-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -457,6 +521,7 @@
 				C9F7E6E119057D2B005AADCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C9F7E6E219057D2B005AADCB /* Build configuration list for PBXNativeTarget "GithubToGOTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +530,7 @@
 				C9F7E6E419057D2B005AADCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
