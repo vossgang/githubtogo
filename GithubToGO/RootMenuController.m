@@ -43,14 +43,15 @@
     
     _tabelView.delegate = self;
     _tabelView.dataSource = self;
+    _tapToClose = [UITapGestureRecognizer new];
     
     
     ReposViewController *repoViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Repos"];
-    repoViewController.title = @"My Repos";
+    repoViewController.title = @"Following";
     repoViewController.burgerDelegate = self;
     
     UsersViewController *userViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Users"];
-    userViewController.title = @"Following";
+    userViewController.title = @"My Repos";
     userViewController.burgerDelegate = self;
 
     
@@ -132,7 +133,7 @@
         _topViewController.view.frame = CGRectMake(_topViewController.view.frame.size.width * .75, _topViewController.view.frame.origin.y, _topViewController.view.frame.size.width, _topViewController.view.frame.size.height);
     } completion:^(BOOL finished) {
         if (finished) {
-            _tapToClose = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeMenu:)];
+            [_tapToClose addTarget:self action:@selector(closeMenu:)];
             [_topViewController.view addGestureRecognizer:_tapToClose];
             _tabelView.userInteractionEnabled = _menuIsOpen = YES;
             

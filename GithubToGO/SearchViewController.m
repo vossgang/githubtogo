@@ -13,7 +13,7 @@
 
 #import "MVRepo.h"
 
-@interface SearchViewController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, NetworkProtocal>
+@interface SearchViewController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel        *titleLabel;
 
@@ -45,17 +45,23 @@
     _networkController = _appDelegate.networkController;
     
     
-    _searchBar.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
-    
-    _titleLabel.text = self.title;
-    
-    _networkController.delegate = self;
-    
+    _searchBar.delegate         = self;
+    _tableView.dataSource       = self;
+    _tableView.delegate         = self;
+    _titleLabel.text            = self.title;
     
     
     // Do any additional setup after loading the view.
+}
+
+-(void)assignReposToArrayAndReloadTable
+{
+    [_networkController retrieveReposForCurrentUser:^(NSArray *repos) {
+        _repos = repos;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView reloadData];
+        }];
+    }];
 }
 
 
@@ -81,12 +87,23 @@
 }
 
 
--(void)searchGithubfor:(NSString *)search
+-(void)searchGithubfor:(NSString *)user
 {
     
-   _repos = [[_networkController downloadReposForUser:search] mutableCopy];
+    [_networkController downloadReposForUser:user withcompletion:^(NSArray *repos) {
+        
+            dispatch_queue_t loadData = dispatch_get_main_queue();
+            
+            dispatch_sync(loadData, ^{
+                _repos = repos;
+                [_tableView reloadData];
+            });
+            
+          
     
-    [_tableView reloadData];
+    }];
+    
+   
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -109,9 +126,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchCell" forIndexPath:indexPath];
     
-    MVRepo *thisRepo = [[MVRepo alloc]initRepoWith:_repos[indexPath.row]];
-    
-    
+    MVRepo *thisRepo = _repos[indexPath.row];
     
     cell.textLabel.text = thisRepo.name;
     
@@ -122,7 +137,7 @@
 {
     MVViewController *thisRepo = [MVViewController new];
     
-    thisRepo.detailRepo = [[MVRepo alloc]initRepoWith:_repos[indexPath.row]];
+    thisRepo.detailRepo = _repos[indexPath.row];
     
     thisRepo.view.backgroundColor = [UIColor whiteColor];
     [self presentViewController:thisRepo animated:YES completion:nil];
@@ -130,17 +145,6 @@
     
 }
 
-
--(void)finishedLoadingReposForUser
-{
-    
-    _repos = _networkController.arrayOfUserRepos;
-    
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.tableView reloadData];
-    }];
-
-}
 
 /*
 #pragma mark - Navigation

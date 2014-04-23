@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C94198C719057F290088DB95 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C94198C619057F290088DB95 /* SearchViewController.m */; };
 		C98DCDCE1907207000AE6473 /* MVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DCDCD1907207000AE6473 /* MVViewController.m */; };
+		C9CEE27819083E05006EAE1B /* MVSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CEE27719083E05006EAE1B /* MVSignInViewController.m */; };
 		C9D57ED21907067700004ABB /* MVRepo.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D57ED11907067700004ABB /* MVRepo.m */; };
 		C9F7E6B119057D2B005AADCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F7E6B019057D2B005AADCB /* Foundation.framework */; };
 		C9F7E6B319057D2B005AADCB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F7E6B219057D2B005AADCB /* CoreGraphics.framework */; };
@@ -46,6 +47,8 @@
 		C98DCDCC1907207000AE6473 /* MVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVViewController.h; sourceTree = "<group>"; };
 		C98DCDCD1907207000AE6473 /* MVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVViewController.m; sourceTree = "<group>"; };
 		C98DCDCF190729D100AE6473 /* NetworkProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkProtocal.h; sourceTree = "<group>"; };
+		C9CEE27619083E05006EAE1B /* MVSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVSignInViewController.h; sourceTree = "<group>"; };
+		C9CEE27719083E05006EAE1B /* MVSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVSignInViewController.m; sourceTree = "<group>"; };
 		C9D57ECD1906F9F900004ABB /* GithubToGO.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GithubToGO.entitlements; sourceTree = "<group>"; };
 		C9D57ED01907067700004ABB /* MVRepo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVRepo.h; sourceTree = "<group>"; };
 		C9D57ED11907067700004ABB /* MVRepo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVRepo.m; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 				C9F810D81906DFDF00A6A2ED /* MVNetworkController.h */,
 				C9F810D91906DFDF00A6A2ED /* MVNetworkController.m */,
 				C9F7E6C219057D2B005AADCB /* Main.storyboard */,
+				C9CEE27619083E05006EAE1B /* MVSignInViewController.h */,
+				C9CEE27719083E05006EAE1B /* MVSignInViewController.m */,
 				C98DCDCC1907207000AE6473 /* MVViewController.h */,
 				C98DCDCD1907207000AE6473 /* MVViewController.m */,
 				C9F7E6E519057DB2005AADCB /* RootMenuController.h */,
@@ -317,6 +322,7 @@
 				C9D57ED21907067700004ABB /* MVRepo.m in Sources */,
 				C9F7E6ED19057ED1005AADCB /* UsersViewController.m in Sources */,
 				C9F7E6C119057D2B005AADCB /* MVAppDelegate.m in Sources */,
+				C9CEE27819083E05006EAE1B /* MVSignInViewController.m in Sources */,
 				C98DCDCE1907207000AE6473 /* MVViewController.m in Sources */,
 				C94198C719057F290088DB95 /* SearchViewController.m in Sources */,
 			);

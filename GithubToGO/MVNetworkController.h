@@ -16,12 +16,12 @@
 
 @property (nonatomic, unsafe_unretained) id<NetworkProtocal> delegate;
 
--(void)requestOAuthAccess;
+-(void)requestOAuthAccess:(void (^)())compeationBlock;
 
 -(void)handleOAuthCallBackWith:(NSURL *)url;
 
--(NSArray *)downloadReposForUser:(NSString *)userName;
+-(void)downloadReposForUser:(NSString *)userName withcompletion:(void(^)(NSArray *repos))compleationBlock;
 
--(void)retrieveReposForCurrentUser;
+-(void)retrieveReposForCurrentUser:(void(^)(NSArray *repos))compleationBlock;
 
 @end

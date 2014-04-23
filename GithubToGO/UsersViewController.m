@@ -7,10 +7,18 @@
 //
 
 #import "UsersViewController.h"
+#import "MVAppDelegate.h"
+#import "MVNetworkController.h"
+#import "MVRepo.h"
 
-@interface UsersViewController ()
+@interface UsersViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) MVAppDelegate           *appDelegate;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray *repos;
+
+@property (weak, nonatomic) MVNetworkController     *networkController;
 
 @end
 
@@ -24,10 +32,58 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _titleLabel.text = self.title;
+    
+    _repos = [NSMutableArray new];
+    
+    _appDelegate = [UIApplication sharedApplication].delegate;
+    
+    _appDelegate.networkController = [MVNetworkController new];
+    
+    _networkController = _appDelegate.networkController;
+    
+    
+    _tableView.dataSource       = self;
+    _tableView.delegate         = self;
+    _titleLabel.text            = self.title;
+    
+    
+    
+    if (_networkController.accessToken) {
+        [self assignReposToArrayAndReloadTable];
+    } else {
+        [_networkController requestOAuthAccess:^{
+            [self assignReposToArrayAndReloadTable];
+        }];
+    }
 
     // Do any additional setup after loading the view.
 }
+-(void)assignReposToArrayAndReloadTable
+{
+    [_networkController retrieveReposForCurrentUser:^(NSArray *repos) {
+        _repos = repos;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView reloadData];
+        }];
+    }];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _repos.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserRepoCell" forIndexPath:indexPath];
+    
+    MVRepo *thisRepo = _repos[indexPath.row];
+    
+    cell.textLabel.text = thisRepo.name;
+    
+    return cell;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
