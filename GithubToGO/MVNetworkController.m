@@ -33,6 +33,8 @@
         if (!_accessToken) {
             NSLog(@"no access");
             [self requestOAuthAccess];
+        } else {
+            [self retrieveReposForCurrentUser];
         }
     }
     return self;
@@ -80,6 +82,7 @@
             NSLog(@"error: %@", error.description);
         }
         [self convetResponseDataIntoToken:data];
+        [self retrieveReposForCurrentUser];
         
     }];
     
@@ -102,6 +105,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:self.accessToken forKey:@"OAuthToken"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    NSLog(@"%@", _accessToken);
     
     return _accessToken;
 
@@ -153,20 +157,18 @@
     [request setValue:[NSString stringWithFormat:@"token %@", _accessToken] forHTTPHeaderField:@"Authorization"];
     
     NSURLSessionDataTask *repoDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSLog(@"%@", response.description);
+//        NSLog(@"%@", response.description);
         
-        NSArray *jason = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"%@", jason);
+        NSArray *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"%@", JSON);
         
-        _arrayOfUserRepos = jason;
+        _arrayOfUserRepos = JSON;
         [_delegate finishedLoadingReposForUser];
 
 
     }];
 
     [repoDataTask resume];
-
-    return;
 }
 @end
 
