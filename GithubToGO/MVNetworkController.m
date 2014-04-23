@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //
 //  MVNetworkController.m
 //  GithubToGO
@@ -170,8 +169,4 @@
     return;
 }
 @end
-=======
 
-
- 
->>>>>>> 73795bbc0beeaf2b86824e06c56b487f0585a762
