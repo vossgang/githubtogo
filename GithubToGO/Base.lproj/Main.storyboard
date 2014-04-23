@@ -147,6 +147,34 @@
             </objects>
             <point key="canvasLocation" x="368" y="641"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="p7e-8r-e70">
+            <objects>
+                <viewController storyboardIdentifier="detail" id="ifm-Dh-Prn" customClass="MVViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vSG-8i-5E2"/>
+                        <viewControllerLayoutGuide type="bottom" id="HiQ-38-lr1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YRM-kE-by9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k12-4q-T3a">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="k12-4q-T3a" id="nr1-PP-Lx7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VNq-eW-K2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="762" y="641"/>
+        </scene>
         <!--Repos View Controller-->
         <scene sceneID="vpE-Su-D8n">
             <objects>
@@ -173,11 +201,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J42-hy-Ule">
-                                <rect key="frame" x="0.0" y="50" width="320" height="469"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </webView>
                         </subviews>
                         <color key="backgroundColor" red="0.76195488199999994" green="0.2199824292" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -187,7 +210,6 @@
                     </view>
                     <connections>
                         <outlet property="titleLabel" destination="med-GR-Pr8" id="gba-FS-D4F"/>
-                        <outlet property="webView" destination="J42-hy-Ule" id="Czt-Dm-aPW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DbE-5d-4Ea" userLabel="First Responder" sceneMemberID="firstResponder"/>

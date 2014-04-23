@@ -8,11 +8,12 @@
 
 #import "SearchViewController.h"
 #import "MVAppDelegate.h"
-#import "ReposViewController.h"
+#import "MVViewController.h"
+#import "NetworkProtocal.h"
 
 #import "MVRepo.h"
 
-@interface SearchViewController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface SearchViewController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, NetworkProtocal>
 
 @property (weak, nonatomic) IBOutlet UILabel        *titleLabel;
 
@@ -22,7 +23,7 @@
 
 @property (weak, nonatomic) MVNetworkController     *networkController;
 
-@property (nonatomic,strong) NSMutableArray         *repos;
+@property (nonatomic,strong) NSArray                *repos;
 
 @end
 
@@ -50,8 +51,9 @@
     
     _titleLabel.text = self.title;
     
-//    [_networkController requestOAuthAccess];
+    _networkController.delegate = self;
     
+    [_networkController retrieveReposForCurrentUser];
     
     
     // Do any additional setup after loading the view.
@@ -111,7 +113,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ReposViewController *thisRepo = [ReposViewController new];
+    MVViewController *thisRepo = [MVViewController new];
     
     thisRepo.detailRepo = [[MVRepo alloc]initRepoWith:_repos[indexPath.row]];
     
@@ -121,6 +123,17 @@
     
 }
 
+
+-(void)finishedLoadingReposForUser
+{
+    
+    _repos = _networkController.arrayOfUserRepos;
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
+
+}
 
 /*
 #pragma mark - Navigation

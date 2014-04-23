@@ -13,8 +13,10 @@
 #define GITHUB_CALLBACK_URI     @"gitauth://gittogo_callback"
 #define GITHUB_OAUTH_URL        @"https://github.com/login/oauth/authorize?client_id=%@&redirect_uri=%@&scope=%@"
 
+#define GITHUB_API_URL          @"https://api.github.com%@"
 
-#define GITHUB_USER_SEARCH @"https://api.github.com/users/%@/repos"
+
+#define GITHUB_USER_SEARCH      @"https://api.github.com/users/%@/repos"
 
 
 @implementation MVNetworkController
@@ -27,8 +29,6 @@
     if (self) {
         
         _accessToken =[[NSUserDefaults standardUserDefaults] objectForKey:@"OAuthToken"];
-
-        NSLog(@"init token %@", _accessToken);
         
         if (!_accessToken) {
             NSLog(@"no access");
@@ -138,5 +138,34 @@
     
     return json;
     
+}
+
+
+
+-(void)retrieveReposForCurrentUser
+{
+    NSURL *repoRequest = [NSURL URLWithString:[NSString stringWithFormat:GITHUB_API_URL, @"/user/repos"]];
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest new];
+    [request setURL:repoRequest];
+    [request setValue:[NSString stringWithFormat:@"token %@", _accessToken] forHTTPHeaderField:@"Authorization"];
+    
+    NSURLSessionDataTask *repoDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSLog(@"%@", response.description);
+        
+        NSArray *jason = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"%@", jason);
+        
+        _arrayOfUserRepos = jason;
+        [_delegate finishedLoadingReposForUser];
+
+
+    }];
+
+    [repoDataTask resume];
+
+    return;
 }
 @end
