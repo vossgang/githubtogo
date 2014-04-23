@@ -19,8 +19,9 @@
 {
     [super viewDidLoad];
     
-    [self configureView];
-    // Do any additional setup after loading the view.
+    NSURLRequest *urlrequest =[NSURLRequest requestWithURL:[NSURL URLWithString:_detailRepo.html_url] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:600000];
+    
+    [_webView loadRequest:urlrequest];    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -29,20 +30,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)configureView
+- (IBAction)goBack:(id)sender
 {
-    // Update the user interface for the detail item.
-    NSURL *detailWebURL = [NSURL URLWithString:_detailRepo.html_url];
     
-    NSData *detailWebData = [NSData dataWithContentsOfURL:detailWebURL];
-    
-    if (detailWebData) {
-        NSLog(@"data");
-    }
-    
-    NSString *detailWebString = [[NSString alloc] initWithData:detailWebData encoding:NSUTF8StringEncoding];
-    
-    [_webView loadHTMLString:detailWebString baseURL:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

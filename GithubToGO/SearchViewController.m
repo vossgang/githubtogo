@@ -81,15 +81,10 @@
     
     [_networkController downloadReposForUser:user withcompletion:^(NSArray *repos) {
         
-            dispatch_queue_t loadData = dispatch_get_main_queue();
-            
-            dispatch_sync(loadData, ^{
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 _repos = repos;
                 [_tableView reloadData];
-            });
-            
-          
-    
+            }];
     }];
     
    
@@ -122,15 +117,15 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    MVViewController *thisRepo = [MVViewController new];
+    NSIndexPath *path = _tableView.indexPathForSelectedRow;
     
-    thisRepo.detailRepo = _repos[indexPath.row];
-    
-    thisRepo.view.backgroundColor = [UIColor whiteColor];
-    [self presentViewController:thisRepo animated:YES completion:nil];
-
+    if ([segue.identifier isEqualToString:@"detailView"]) {
+        MVViewController *detail = segue.destinationViewController;
+        detail.detailRepo = [_repos objectAtIndex:path.row];
+       
+    }
     
 }
 

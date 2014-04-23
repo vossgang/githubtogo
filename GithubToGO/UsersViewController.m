@@ -10,6 +10,7 @@
 #import "MVAppDelegate.h"
 #import "MVNetworkController.h"
 #import "MVRepo.h"
+#import "MVViewController.h"
 
 @interface UsersViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -82,6 +83,19 @@
     cell.textLabel.text = thisRepo.name;
     
     return cell;
+}
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSIndexPath *path = _tableView.indexPathForSelectedRow;
+    
+    if ([segue.identifier isEqualToString:@"detailView"]) {
+        MVViewController *detail = segue.destinationViewController;
+        detail.detailRepo = [_repos objectAtIndex:path.row];
+        
+    }
+    
 }
 
 
