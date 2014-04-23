@@ -54,17 +54,6 @@
     // Do any additional setup after loading the view.
 }
 
--(void)assignReposToArrayAndReloadTable
-{
-    [_networkController retrieveReposForCurrentUser:^(NSArray *repos) {
-        _repos = repos;
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self.tableView reloadData];
-        }];
-    }];
-}
-
-
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];

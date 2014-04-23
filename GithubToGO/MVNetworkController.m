@@ -168,16 +168,16 @@
 -(void)retrieveReposForCurrentUser:(void(^)(NSArray *repos))compleationBlock
 {
     
-    dispatch_queue_t   downloadQueue = dispatch_queue_create("com.MATT.VOSS.downloadQueue", NULL);
-    
-    dispatch_async(downloadQueue, ^{
-        
-    //code goes here
-    
-    });
-    
-    NSLog(@"retrieveReposForCurrentUser");
-    
+//    dispatch_queue_t   downloadQueue = dispatch_queue_create("com.MATT.VOSS.downloadQueue", NULL);
+//    
+//    dispatch_async(downloadQueue, ^{
+//        
+//    //code goes here
+//    
+//    });
+
+//code for GCD queues
+
     
     NSURL *repoRequest = [NSURL URLWithString:[NSString stringWithFormat:GITHUB_API_URL, @"/user/repos"]];
     
@@ -190,7 +190,6 @@
     
     NSURLSessionDataTask *repoDataTask = [_urlSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSArray *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"%@", JSON);
         
         NSMutableArray *tempArray = [NSMutableArray new];
         [JSON enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

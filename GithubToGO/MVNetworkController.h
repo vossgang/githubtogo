@@ -12,7 +12,6 @@
 @interface MVNetworkController : NSObject
 
 @property (nonatomic, strong) NSString *accessToken;
-@property (nonatomic, strong) NSArray *arrayOfUserRepos;
 
 @property (nonatomic, unsafe_unretained) id<NetworkProtocal> delegate;
 
