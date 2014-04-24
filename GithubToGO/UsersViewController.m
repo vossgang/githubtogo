@@ -42,12 +42,9 @@
     
     _networkController = _appDelegate.networkController;
     
-    
     _tableView.dataSource       = self;
     _tableView.delegate         = self;
     _titleLabel.text            = self.title;
-    
-    
     
     if (_networkController.accessToken) {
         [self assignReposToArrayAndReloadTable];

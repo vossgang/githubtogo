@@ -16,8 +16,7 @@
 
 #define GITHUB_API_URL          @"https://api.github.com%@"
 
-
-#define GITHUB_USER_SEARCH      @"https://api.github.com/users/%@/repos"
+#define GITHUB_USER_SEARCH      @"https://api.github.com/search/users?q=%@"
 
 @interface MVNetworkController()
 
@@ -28,7 +27,6 @@
 
 
 @implementation MVNetworkController
-
 
 -(id)init
 {
@@ -45,7 +43,7 @@
         if (!_accessToken) {
             NSLog(@"no access");
         } else {
-            [_urlSession.configuration setHTTPAdditionalHeaders:@{@"Authorization": [NSString stringWithFormat:@"token %@", _accessToken]}];
+            [config setHTTPAdditionalHeaders:@{@"Authorization": [NSString stringWithFormat:@"token %@", _accessToken]}];
             NSLog(@"%@",_accessToken);
         }
         _urlSession  = [NSURLSession sessionWithConfiguration:config];
@@ -54,14 +52,12 @@
     return self;
 }
 
-
 -(void)requestOAuthAccess:(void (^)())compeationBlock
 {
     NSString *urlString = [NSString stringWithFormat:GITHUB_OAUTH_URL,GITHUB_CLIENT_ID,GITHUB_CALLBACK_URI,@"user,repo"];
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
     _completedAccess = compeationBlock;
-    
     
 }
 
@@ -98,7 +94,6 @@
     [postDataTask resume];
 }
 
-
 -(NSString *)convetResponseDataIntoToken:(NSData *)data
 {
     NSString *tokenResponse = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
@@ -116,12 +111,16 @@
     
     NSLog(@"%@", _accessToken);
     
-    _urlSession.configuration.HTTPAdditionalHeaders = @{@"Authorization": [NSString stringWithFormat:@"token %@", _accessToken]};
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    config.allowsCellularAccess = YES;
+    
+    [config setHTTPAdditionalHeaders:@{@"Authorization": [NSString stringWithFormat:@"token %@", _accessToken]}];
+
+    _urlSession  = [NSURLSession sessionWithConfiguration:config];
     
     return _accessToken;
-
 }
-
 
 -(NSString *)getCodeFromCallBack:(NSURL *)callBackURL
 {
@@ -130,9 +129,7 @@
     NSArray *components = [query componentsSeparatedByString:@"="];
     
     return [components lastObject];
-    
 }
-
 
 -(void)downloadReposForUser:(NSString *)userName withcompletion:(void(^)(NSArray *repos))completionBlock
 {
@@ -142,28 +139,31 @@
     
     NSMutableURLRequest *request = [NSMutableURLRequest new];
     [request setURL:searchUrl];
-    [request setValue:[NSString stringWithFormat:@"token %@", _accessToken] forHTTPHeaderField:@"Authorization"];
+//    [request setValue:[NSString stringWithFormat:@"token %@", _accessToken] forHTTPHeaderField:@"Authorization"];
 
-    
     NSURLSessionDataTask *downloadRepos = [_urlSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSArray *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        NSMutableArray *tempArray = [NSMutableArray new];
-        [JSON enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        if (JSON) {
+            NSArray *JsonArray = [JSON objectForKey:@"items"];
             
-            MVRepo *repo = [[MVRepo alloc] initRepoWith:obj];
-            [tempArray addObject:repo];
-            
-        }];
-        
-        completionBlock(tempArray);
+            if (JsonArray) {
+                NSMutableArray *tempArray = [NSMutableArray new];
+                [JsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    
+                    MVRepo *repo = [[MVRepo alloc] initRepoWithUserDictionary:obj];
+                    [tempArray addObject:repo];
+                    
+                }];
+                
+                completionBlock(tempArray);
+            }
+        }
         
     }];
     
     [downloadRepos resume];
     
 }
-
-
 
 -(void)retrieveReposForCurrentUser:(void(^)(NSArray *repos))completionBlock
 {
@@ -184,24 +184,22 @@
     NSMutableURLRequest *request = [NSMutableURLRequest new];
     [request setURL:repoRequest];
     
-    
-    
-    [request setValue:[NSString stringWithFormat:@"token %@", _accessToken] forHTTPHeaderField:@"Authorization"];
+//    [request setValue:[NSString stringWithFormat:@"token %@", _accessToken] forHTTPHeaderField:@"Authorization"];
     
     NSURLSessionDataTask *repoDataTask = [_urlSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSArray *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         
+        
+        
         NSMutableArray *tempArray = [NSMutableArray new];
         [JSON enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
-            MVRepo *repo = [[MVRepo alloc] initRepoWith:obj];
+            MVRepo *repo = [[MVRepo alloc] initRepoWithRepoDictionary:obj];
             [tempArray addObject:repo];
             
         }];
         
-        
         completionBlock(tempArray);
-
 
     }];
 

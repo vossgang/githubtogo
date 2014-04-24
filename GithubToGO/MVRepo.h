@@ -16,11 +16,19 @@
 @property (nonatomic, strong) NSString *html_url;
 @property (nonatomic, strong) NSString *lastPushed;
 
-@property (nonatomic, strong) NSString *ownerLogin;
 @property (nonatomic ,strong) NSNumber *owner_id;
-@property (nonatomic, strong) NSString *avatar_url;
+@property (nonatomic, strong) NSString *ownerLogin;
+@property (nonatomic, strong) NSString *avatar_urlPath;
 @property (nonatomic, strong) NSString *ownerhtml_url;
 
--(id)initRepoWith:(NSDictionary *)dict;
+@property (nonatomic, strong) UIImage  *avatarImage;
+
+@property (nonatomic, strong) NSBlockOperation  *imageDownloadOp;
+
+-(id)initRepoWithRepoDictionary:(NSDictionary *)dict;
+-(id)initRepoWithUserDictionary:(NSDictionary *)dictionary;
+-(void)downloadAvatarWithCompletionBlock:(void(^)())completion;
+-(void)downloadAvatarOnQueue:(NSOperationQueue *)queue WithCompletionBlock:(void(^)())completion;
+-(void)cancelAvatarDownload;
 
 @end
