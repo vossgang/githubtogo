@@ -19,8 +19,8 @@
 
 -(void)handleOAuthCallBackWith:(NSURL *)url;
 
--(void)downloadReposForUser:(NSString *)userName withcompletion:(void(^)(NSArray *repos))compleationBlock;
+-(void)downloadReposForUser:(NSString *)userName withcompletion:(void(^)(NSArray *repos))completionBlock;
 
--(void)retrieveReposForCurrentUser:(void(^)(NSArray *repos))compleationBlock;
+-(void)retrieveReposForCurrentUser:(void(^)(NSArray *repos))completionBlock;
 
 @end

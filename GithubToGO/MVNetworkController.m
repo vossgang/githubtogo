@@ -134,7 +134,7 @@
 }
 
 
--(void)downloadReposForUser:(NSString *)userName withcompletion:(void(^)(NSArray *repos))compleationBlock
+-(void)downloadReposForUser:(NSString *)userName withcompletion:(void(^)(NSArray *repos))completionBlock
 {
     
     NSString *searchUrlString = [NSString stringWithFormat:GITHUB_USER_SEARCH, userName];
@@ -155,7 +155,7 @@
             
         }];
         
-        compleationBlock(tempArray);
+        completionBlock(tempArray);
         
     }];
     
@@ -165,7 +165,7 @@
 
 
 
--(void)retrieveReposForCurrentUser:(void(^)(NSArray *repos))compleationBlock
+-(void)retrieveReposForCurrentUser:(void(^)(NSArray *repos))completionBlock
 {
     
 //    dispatch_queue_t   downloadQueue = dispatch_queue_create("com.MATT.VOSS.downloadQueue", NULL);
@@ -200,7 +200,7 @@
         }];
         
         
-        compleationBlock(tempArray);
+        completionBlock(tempArray);
 
 
     }];
