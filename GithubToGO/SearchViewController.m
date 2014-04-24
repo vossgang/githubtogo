@@ -55,12 +55,8 @@
     _collectionView.delegate    = self;
     _titleLabel.text            = self.title;
     
-    
     // Do any additional setup after loading the view.
 }
-
-
-
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -73,7 +69,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     _repos = nil;
@@ -81,7 +76,6 @@
     [searchBar resignFirstResponder];
     [_collectionView reloadData];
 }
-
 
 -(void)searchGithubfor:(NSString *)user
 {
@@ -118,29 +112,6 @@
         [currentRepo cancelAvatarDownload];
     }
 }
-/*
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *identifier = @"SeachCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    
-    MVRepo *thisRepo = _repos[indexPath.row];
-    
-    cell.textLabel.text = thisRepo.ownerLogin;
-    
-    if (thisRepo.avatarImage) {
-        cell.imageView.image = thisRepo.avatarImage;
-    } else {
-        cell.imageView.image = nil;
-        [thisRepo downloadAvatarOnQueue:_downloadImageQueue WithCompletionBlock:^{
-            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
-        }];
-    }
-    
-    return cell;
-} */
-
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -149,7 +120,6 @@
     MVRepo *thisRepo = _repos[indexPath.row];
 
     cell.backgroundColor = [UIColor blueColor];
-
     
     if (thisRepo.avatarImage) {
         cell.imageView.image = thisRepo.avatarImage;
@@ -167,15 +137,17 @@
     return cell;
 }
 
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSIndexPath *path = [_collectionView indexPathForCell:sender];
+    NSIndexPath *path =[_collectionView indexPathForCell:sender];
     
-    if ([segue.identifier isEqualToString:@"detailView"]) {
+    if ([segue.identifier isEqualToString:@"DetailView"]) {
         MVViewController *detail = segue.destinationViewController;
         detail.detailRepo = [_repos objectAtIndex:path.row];
     }
 }
+
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -186,6 +158,7 @@
 {
     return _repos.count;
 }
+
 /*
 #pragma mark - Navigation
 
@@ -198,3 +171,28 @@
 */
 
 @end
+
+//when this use to be a tableview
+
+/*
+ -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ NSString *identifier = @"SeachCell";
+ 
+ UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+ 
+ MVRepo *thisRepo = _repos[indexPath.row];
+ 
+ cell.textLabel.text = thisRepo.ownerLogin;
+ 
+ if (thisRepo.avatarImage) {
+ cell.imageView.image = thisRepo.avatarImage;
+ } else {
+ cell.imageView.image = nil;
+ [thisRepo downloadAvatarOnQueue:_downloadImageQueue WithCompletionBlock:^{
+ [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+ }];
+ }
+ 
+ return cell;
+ } */

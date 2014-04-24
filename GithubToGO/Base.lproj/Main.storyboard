@@ -191,7 +191,7 @@
                                         <connections>
                                             <outlet property="ibTextFeild" destination="lLH-IE-Sbr" id="O9t-XY-gsn"/>
                                             <outlet property="imageView" destination="SNx-3l-yDY" id="fAH-PN-gEk"/>
-                                            <segue destination="ifm-Dh-Prn" kind="modal" identifier="detailview" id="o4e-pw-bef"/>
+                                            <segue destination="ifm-Dh-Prn" kind="modal" identifier="DetailView" id="bfA-Xh-ujL"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -217,7 +217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Si9-KL-uN4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="368" y="641"/>
+            <point key="canvasLocation" x="319" y="600"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="p7e-8r-e70">
@@ -303,6 +303,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="o4e-pw-bef"/>
+        <segue reference="bfA-Xh-ujL"/>
     </inferredMetricsTieBreakers>
 </document>

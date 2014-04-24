@@ -139,9 +139,6 @@
             
         }
     }];
-
-    
-    
 }
 
 -(void)handleBurgerPressed
@@ -155,7 +152,6 @@
     
 }
 
-
 -(void)closeMenu:(id)sender
 {
     [UIView animateWithDuration:.5 animations:^{
@@ -168,9 +164,6 @@
     }];
     
 }
-
-
-
 
 -(void)switchToViewControllerAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -199,18 +192,12 @@
         [self closeMenu:nil];
         
     }];
-    
-    
 }
-
-
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _arrayOfViewControllers.count;
 }
-
-
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -221,15 +208,10 @@
     return cell;
 }
 
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     [self switchToViewControllerAtIndexPath:indexPath];
-    
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -248,13 +230,9 @@
 }
 */
 
-
-
 - (void)orientationChanged:(NSNotification *)notification
 {
-    
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
-    
     
     if (_menuIsOpen) {
         
