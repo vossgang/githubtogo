@@ -25,8 +25,14 @@
         } else {
             _repo_description = [dictionary objectForKey:@"description"];
         }
+        _html_url   = [dictionary objectForKey:@"html_url"] ? [dictionary objectForKey:@"html_url"] : @" ";
+        _lastPushed = [dictionary objectForKey:@"pushed_at"];
         
-        _html_url = [dictionary objectForKey:@"html_url"] ? [dictionary objectForKey:@"html_url"] : @" ";
+        NSDictionary *owner = [dictionary objectForKey:@"owner"];
+        _ownerLogin = [owner objectForKey:@"login"];
+        _owner_id = [owner objectForKey:@"id"];
+        _avatar_url = [owner objectForKey:@"avatar_url"];
+        _ownerhtml_url = [owner objectForKey:@"html_url"];
         
     }
     
