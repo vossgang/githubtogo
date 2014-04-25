@@ -17,6 +17,7 @@
 #define GITHUB_API_URL          @"https://api.github.com%@"
 
 #define GITHUB_USER_SEARCH      @"https://api.github.com/search/users?q=%@"
+#define GITHUB_REPO_SEARCH      @"https://api.github.com/search/repo?q=%@"
 
 @interface MVNetworkController()
 

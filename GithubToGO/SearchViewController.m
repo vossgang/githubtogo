@@ -16,18 +16,12 @@
 @interface SearchViewController () <UISearchBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel        *titleLabel;
-
 @property (weak, nonatomic) IBOutlet UISearchBar    *searchBar;
-
 @property (weak, nonatomic) MVAppDelegate           *appDelegate;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
 @property (weak, nonatomic) MVNetworkController     *networkController;
-
 @property (nonatomic,strong) NSArray                *repos;
-
 @property (nonatomic, strong) NSOperationQueue      *downloadImageQueue;
-
 @property (nonatomic, strong) NSTimer               *reloadTimer;
 
 @end
@@ -158,17 +152,6 @@
 {
     return _repos.count;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
 
